@@ -33,9 +33,8 @@ class Han(BaseModel):
         self.net_G = network.define_g(gpu_ids=opt.gpu_ids)
         # define the discriminator model
         self.net_D = network.define_d(gpu_ids=opt.gpu_ids)
-        if opt.gpu:
-            self.net_G = self.net_G.cuda(self.gpu_ids[0])
-            self.net_D = self.net_D.cuda(self.gpu_ids[0])
+        self.net_G = self.net_G.cuda(self.gpu_ids[0])
+        self.net_D = self.net_D.cuda(self.gpu_ids[0])
 
 
         if self.isTrain:

@@ -23,8 +23,8 @@ class BaseOptions():
         parser.add_argument('--gpu', type=bool, default=True, help='gpu or cpu')
 
 
-        parser.add_argument('--img_file', type=str, default='/mnt/recsys/daniel/datasets/kidsFace_dataset_MICCAI/training', help='training and testing dataset')
-        parser.add_argument('--mask_file', type=str, default='/mnt/recsys/daniel/datasets/ffhq_8000_children/256/percent0_5000imgs/mask_255', help='load test mask')
+        parser.add_argument('--img_file', type=str, default='/mnt/recsys/daniel/datasets/ffhq_children_inpainting_train/img', help='training and testing dataset')
+        parser.add_argument('--mask_file', type=str, default='/mnt/recsys/daniel/datasets/ffhq_children_inpainting_train/mask255', help='load test mask')
 
         parser.add_argument('--loadSize', type=int, default=[256, 256], help='scale images to this size')
         parser.add_argument('--fineSize', type=int, default=[256, 256], help='then crop to this size')
