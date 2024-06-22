@@ -3,3 +3,11 @@ checkpoints/
 
 #skip results 
 results/
+
+model/.ipynb_checkpoints/
+dataloader/.ipynb_checkpoints/
+options/.ipynb_checkpoints/
+
+i# Ignore Python bytecode files
+*.pyc
+__pycache__/
