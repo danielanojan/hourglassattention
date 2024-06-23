@@ -58,26 +58,12 @@ class Han(BaseModel):
         self.image_paths = self.input['img_path']
         self.img = input['img']
         self.mask = input['mask']
-        '''
-        img = self.img[0].cpu().float().numpy()
-        img = (np.transpose(img, (1, 2, 0)) ) * 255.0
-
-        cv2.imwrite('image.png', img)
-
-        mask_numpy = self.mask.numpy()[0]
-        cv2.imwrite('mask.png', np.transpose(mask_numpy, (2, 1, 0)))
-        '''
         if len(self.gpu_ids) > 0:
             self.img = self.img.cuda(self.gpu_ids[0])
             self.mask = self.mask.cuda(self.gpu_ids[0])
 
         self.img_truth = self.img * 2 - 1
         self.img_m = self.mask * self.img_truth
-        '''
-        img_m_out = self.img_m[0].cpu().float().numpy()
-        img_m_out = (np.transpose(img_m_out, (1, 2, 0))) / 2.0 * 255.0
-        cv2.imwrite('img_m.png', img_m_out)
-        '''
         #why image_m
 
     def test(self):
@@ -98,15 +84,7 @@ class Han(BaseModel):
         """Run forward processing to get the inputs"""
 
         self.img_g = self.net_G(self.img_m, self.mask)
-        '''
-        in_img = self.img_m.cpu()
-        in_img_numpy = in_img.numpy()[0]
-        cv2.imwrite('in.png', np.transpose(in_img_numpy,(2, 1, 0)))
 
-        out_img = self.img_g.cpu()
-        out_img_numpy = out_img.detach().numpy()[0]
-        cv2.imwrite('out.png', np.transpose(out_img_numpy, (2, 1, 0)))
-        '''
         self.img_out = self.img_g * (1 - self.mask) + self.img_truth * self.mask
         #              First part - take generated area in non mask area    second part - select original image in masked area
     def backward_D_basic(self, netD, real, fake):

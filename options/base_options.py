@@ -35,13 +35,6 @@ class BaseOptions():
         parser.add_argument('--batchSize', type=int, default=1, help='input batch size')
         parser.add_argument('--nThreads', type=int, default=1, help='# threads for loading data')
         parser.add_argument('--no_shuffle', action='store_true',help='if true, takes images serial')
-
-        # display parameter define
-        parser.add_argument('--display_winsize', type=int, default=256, help='display window size')
-        parser.add_argument('--display_id', type=int, default=1, help='display id of the web')
-        parser.add_argument('--display_port', type=int, default=8700, help='visidom port of the web display')
-        parser.add_argument('--display_single_pane_ncols', type=int, default=0, help='if positive, display all images in a single visidom web panel')
-
         return parser
 
     def gather_options(self):
